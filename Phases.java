@@ -26,11 +26,13 @@ public class Phases {
         
         boolean positions[][] = Positions.playerStartPositions(Positions.boundaryPositions(sideLength), sideLength, numberOfPlayers);
         
-        SimpleWindow gameboard = new SimpleWindow(sideLength * 50 + 100, sideLength * 50 + 1, "Gameboard");
+        SimpleWindow gameboard = new SimpleWindow(sideLength * 50 + 350, sideLength * 50 + 1, "Gameboard");
         
         Drawing.drawGrid(gameboard, sideLength);
         
+        InformationGathering.visualRepresentationOfWeapons(numberOfPlayers, numberOfWeapons, weapons);
         
+        Drawing.drawWeaponIcons(gameboard, sideLength, numberOfPlayers);
     }
     
     

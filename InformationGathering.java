@@ -8,8 +8,10 @@ public class InformationGathering {
         Scanner sc=new Scanner(System.in);
         
         int numberOfPlayers = 0;
+        //Initiates while-loop
         
         while(numberOfPlayers < 2 || numberOfPlayers > 4){
+            //Number of players must be between 2 and 4
             
             System.out.println("Number of players, between 2 and 4:");
             
@@ -26,8 +28,10 @@ public class InformationGathering {
         Scanner sc=new Scanner(System.in);
         
         int sideLength = 0;
+        //Initiates while-loop
         
         while(sideLength < 6 || sideLength % 2 == 1 || sideLength > 12){
+            //Side length must be even numbers between 6 and 12
             
             System.out.println("Side length of gameboard, even numbers between 6 and 12:");
             
@@ -44,8 +48,10 @@ public class InformationGathering {
         Scanner sc=new Scanner(System.in);
         
         int numberOfWeapons = 0;
+        //Initiates while-loop
         
         while(numberOfWeapons < 1 || numberOfWeapons > 4){
+            //Number of weapons must be between 1 and 4
             
             System.out.println("Number of weapons per player, between 1 and 4:");
             
@@ -63,9 +69,12 @@ public class InformationGathering {
         
         Scanner sc=new Scanner(System.in);
         
-        int weapons[][] = new int[numberOfPlayers][numberOfWeapons];
+        int chooseWeapons[][] = new int[numberOfPlayers][numberOfWeapons];
         
+        int weapons[][] = new int[numberOfPlayers][4];
+                
         for(int i = 0 ; i < numberOfPlayers ; i++){
+            //Which player
             
             if(numberOfWeapons == 1){
                 
@@ -79,16 +88,42 @@ public class InformationGathering {
             
             for(int j = 0 ; j < numberOfWeapons ; j++){
                 
-                weapons[i][j] = 0;
+                chooseWeapons[i][j] = 0;
                 
-                while(weapons[i][j] < 1 || weapons[i][j] > 4){
+                while(chooseWeapons[i][j] < 1 || chooseWeapons[i][j] > 4){
+                    //Weapons must be a bomb, laser, dash or phase
                     
-                    weapons[i][j] = sc.nextInt();
+                    chooseWeapons[i][j] = sc.nextInt();
                 }
             }
             
             System.out.println(" ");
+            
+            for(int k = 0 ; k < numberOfWeapons ; k++){
+                
+                if(chooseWeapons[i][k] == 1){
+                    
+                    weapons[i][0]++;
+                }
+                
+                else if(chooseWeapons[i][k] == 2){
+                    
+                    weapons[i][1]++;
+                }
+                
+                else if(chooseWeapons[i][k] == 3){
+                    
+                    weapons[i][2]++;
+                }
+                
+                else{
+                    
+                    weapons[i][3]++;
+                }
+            }
         }
+        
+        
         
         return weapons;
     }
@@ -101,9 +136,9 @@ public class InformationGathering {
             
             System.out.print((i + 1) + ": ");
             
-            for(int j = 0 ; j < numberOfWeapons ; j++){
+            for(int j = 0 ; j < 4 ; j++){
                 
-                if(j + 1 == numberOfWeapons){
+                if(j + 1 == 4){
                     
                     System.out.println(weapons[i][j]);
                 }
