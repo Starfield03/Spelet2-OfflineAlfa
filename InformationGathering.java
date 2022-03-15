@@ -153,9 +153,9 @@ public class InformationGathering {
             
             
     
-    public static int[] getCoordinates(SimpleWindow gameboard, int sideLength){
+    public static int[] getCoordinates(SimpleWindow gameboard, int sideLength, int player){
         
-        int nextCoordinates[] = {sideLength, sideLength};
+        int nextCoordinates[] = {sideLength, sideLength, 0};
         
         while(nextCoordinates[0] >= sideLength || nextCoordinates[1] >= sideLength){
             
@@ -163,7 +163,33 @@ public class InformationGathering {
             
             nextCoordinates[0] = (int) Math.floor(gameboard.getMouseX() / 50);
             nextCoordinates[1] = (int) Math.floor(gameboard.getMouseY() / 50);
+            //Coordinates of next move
+            
+            if(nextCoordinates[0] >= sideLength + 2 && nextCoordinates[0] <= sideLength + 5 && nextCoordinates[1] == 2){
+                //If player presses any weapon
+                
+                if(nextCoordinates[2] == nextCoordinates[0] - sideLength - 1){
+                    //If player presses the same weapon twice in a row it gets deselected
+                    
+                    Drawing.eraseWeaponMark(gameboard, sideLength, nextCoordinates[2]);
+                    
+                    nextCoordinates[2] = 0;
+                }
+                
+                else{
+                    //Weapon gets selected, old weapon gets deselected
+                    
+                    Drawing.eraseWeaponMark(gameboard, sideLength, nextCoordinates[2]);
+                    
+                    nextCoordinates[2] = nextCoordinates[0] - sideLength - 1;
+                    
+                    Drawing.drawWeaponMark(gameboard, sideLength, player, nextCoordinates[2]);
+                }
+            }
         }
+        
+        Drawing.eraseWeaponMark(gameboard, sideLength, nextCoordinates[2]);
+        //Erases the mark so that the next player can have a clean slate
         
         return nextCoordinates;
     }

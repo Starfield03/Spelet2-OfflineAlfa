@@ -186,6 +186,74 @@ public class Drawing {
     
     
     
+    public static int drawWeaponMarkOutline(SimpleWindow gameboard, int sideLength){
+        
+        gameboard.setLineColor(Color.black);
+        gameboard.setLineWidth(1);
+        
+        for(int i = 0 ; i < 4 ; i++){
+            
+            gameboard.moveTo(sideLength * 50 + 120 + i * 50, 135);
+            gameboard.lineTo(sideLength * 50 + 130 + i * 50, 135);
+            gameboard.lineTo(sideLength * 50 + 130 + i * 50, 145);
+            gameboard.lineTo(sideLength * 50 + 120 + i * 50, 145);
+            gameboard.lineTo(sideLength * 50 + 120 + i * 50, 135);
+            //Draws mark outlines
+        }
+        
+        return 0;
+    }
+    
+    public static int drawWeaponMark(SimpleWindow gameboard, int sideLength, int player, int weapon){
+        
+        Color weaponMark;
+        
+        if(player == 1){
+            
+            weaponMark = new Color(255, 0, 0);
+        }
+        
+        else if(player == 2){
+            
+            weaponMark = new Color(0, 0, 255);
+        }
+        
+        else if(player == 3){
+            
+            weaponMark = new Color(0, 255, 0);
+        }
+        
+        else{
+            
+            weaponMark = new Color(255, 255, 0);
+        }
+        
+        gameboard.setLineColor(weaponMark);
+        
+        gameboard.square(sideLength * 50 + 121 + (weapon - 1) * 50, 136, 9);
+        
+        return 0;
+    }
+    
+    public static int eraseWeaponMark(SimpleWindow gameboard, int sideLength, int weapon){
+        
+        if(weapon == 0){
+            //Nothing gets erased
+        }
+        
+        else{
+            //Previous mark gets erased
+            
+            gameboard.setLineColor(Color.white);
+            
+            gameboard.square(sideLength * 50 + 121 + (weapon - 1) * 50, 136, 9);
+        }
+        
+        return 0;
+    }
+    
+    
+    
     public static int drawOverDeadPlayer(){
         
         //When a player dies, draw over their weapons with a black line to show that they are dead

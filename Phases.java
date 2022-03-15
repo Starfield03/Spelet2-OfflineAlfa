@@ -40,12 +40,21 @@ public class Phases {
         
         Drawing.drawTurn(gameboard, sideLength);
         Drawing.drawTurnSquareAndNumber(gameboard, sideLength, 1); //Temporary
+        
+        Drawing.drawWeaponMarkOutline(gameboard, sideLength);
+        
+        gamePhase(gameboard, sideLength);
     }//Not finished
     
     
     
-    public static void gamePhase(){
+    public static void gamePhase(SimpleWindow gameboard, int sideLength){
         
+        int coordinates[] = InformationGathering.getCoordinates(gameboard, sideLength, 1); //Not done
+        
+        System.out.println(coordinates[0] + " " + coordinates[1] + " " + coordinates[2]);
+        
+        gamePhase(gameboard, sideLength);
         
     }//Not finished
     
