@@ -7,6 +7,8 @@ public class Phases {
         informationPhase();
     }
     
+    
+    
     public static void informationPhase(){
         
         int numberOfPlayers = InformationGathering.numberOfPlayers();
@@ -30,22 +32,27 @@ public class Phases {
         
         Drawing.drawGrid(gameboard, sideLength);
         
-        InformationGathering.visualRepresentationOfWeapons(numberOfPlayers, numberOfWeapons, weapons);
-        
         Drawing.drawWeaponIcons(gameboard, sideLength, numberOfPlayers);
-    }
+        Drawing.drawWeaponCounter(gameboard, sideLength, numberOfPlayers, weapons); //Temporary
+        
+        Drawing.drawRound(gameboard, sideLength);
+        Drawing.drawRoundNumber(gameboard, sideLength, 1); //Temporary
+        
+        Drawing.drawTurn(gameboard, sideLength);
+        Drawing.drawTurnSquareAndNumber(gameboard, sideLength, 1); //Temporary
+    }//Not finished
     
     
     
     public static void gamePhase(){
         
         
-    }
+    }//Not finished
     
     
     
     public static void endPhase(){
         
         
-    }
+    }//Not finished
 }

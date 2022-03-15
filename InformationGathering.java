@@ -128,8 +128,6 @@ public class InformationGathering {
         return weapons;
     }
     
-    
-    
     public static int visualRepresentationOfWeapons(int numberOfPlayers, int numberOfWeapons, int weapons[][]){
         
         for(int i = 0 ; i < numberOfPlayers ; i++){

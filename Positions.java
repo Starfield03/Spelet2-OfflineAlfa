@@ -47,7 +47,7 @@ public class Positions {
         boolean startPositions[][] = new boolean[4][4];
         
         return startPositions;
-    }
+    }//
     
     
     
@@ -99,17 +99,17 @@ public class Positions {
     public static int legalityOfMove(){
         
         return 0;
-    }
+    }//Not finished
     
     public static boolean canPlayerMove(){
         
         return true;
-    }
+    }//Not finished
     
     
     
     public static int[] activeStartPositions(){
         int i[] = {1,2};
         return i;
-    }
+    }//Not finished
 }
