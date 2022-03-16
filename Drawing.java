@@ -23,12 +23,85 @@ public class Drawing {
     
     
     
-    public static int drawNewSquares(){
+    public static int drawNewSquares(SimpleWindow gameboard, int player, int nextPositionX, int nextPositionY){
+        
+        
+        if(player == 1){ 
+            //Player 1
+            
+            Color player1 = new Color(255, 0, 0);
+            gameboard.setLineColor(player1);
+        }
+        
+        else if(player == 2){ 
+            //Player 2
+            
+            Color player2 = new Color(0, 0, 255);
+            gameboard.setLineColor(player2);
+        }
+        
+        else if(player == 3){ 
+            //Player 3
+            
+            Color player3 = new Color(0, 255, 0);
+            gameboard.setLineColor(player3);
+        }
+        
+        else{ 
+            //Player 4
+            
+            Color player4 = new Color(255, 255, 0);
+            gameboard.setLineColor(player4);
+        }
+        
+        gameboard.square(nextPositionX * 50 + 1, nextPositionY * 50 + 1, 49);
+        
+        return 0;
+    }
+    
+    public static int drawOldSquares(SimpleWindow gameboard, int player, int activePositionX, int activePositionY){
+        
+        if(player == 1){ 
+            //Player 1
+            
+            Color player1 = new Color(180, 0, 0);
+            gameboard.setLineColor(player1); 
+        }
+        
+        else if(player == 2){ 
+            //Player 2
+            
+            Color player2 = new Color(0, 0, 170);
+            gameboard.setLineColor(player2);
+        }
+        
+        else if(player == 3){ 
+            //Player 3
+            
+            Color player3 = new Color(0, 180, 0);
+            gameboard.setLineColor(player3);
+        }
+        
+        else{ 
+            //Player 4
+            
+            Color player4 = new Color(180, 180, 0);
+            gameboard.setLineColor(player4);
+        }
+        
+        gameboard.square(activePositionX * 50 + 1, activePositionY * 50 + 1, 49);
+        
+        return 0;
+    }
+    
+    
+    
+    public static int eraseSquaresBomb(){
         
         return 0;
     }//Not finished
     
-    public static int drawOldSquares(){
+    public static int eraseSquaresLaser(){
         
         return 0;
     }//Not finished

@@ -192,5 +192,8 @@ public class InformationGathering {
         //Erases the mark so that the next player can have a clean slate
         
         return nextCoordinates;
+        //nextCoordinates[0] = next x coordinate
+        //nextCoordinates[1] = next y coordinate
+        //nextCoordinates[2] = which weapon gets used, or if no weapon gets used
     }
 }
