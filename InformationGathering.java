@@ -153,7 +153,7 @@ public class InformationGathering {
             
             
     
-    public static int[] getCoordinates(SimpleWindow gameboard, int sideLength, int player){
+    public static int[] getCoordinates(SimpleWindow gameboard, int sideLength, int player, int weapons[][]){
         
         int nextCoordinates[] = {sideLength, sideLength, 0};
         
@@ -165,8 +165,8 @@ public class InformationGathering {
             nextCoordinates[1] = (int) Math.floor(gameboard.getMouseY() / 50);
             //Coordinates of next move
             
-            if(nextCoordinates[0] >= sideLength + 2 && nextCoordinates[0] <= sideLength + 5 && nextCoordinates[1] == 2){
-                //If player presses any weapon
+            if(nextCoordinates[0] >= sideLength + 2 && nextCoordinates[0] <= sideLength + 5 && nextCoordinates[1] == 2 && weapons[player - 1][nextCoordinates[0] - 8] >= 1){
+                //If player presses a weapon which they posses
                 
                 if(nextCoordinates[2] == nextCoordinates[0] - sideLength - 1){
                     //If player presses the same weapon twice in a row it gets deselected

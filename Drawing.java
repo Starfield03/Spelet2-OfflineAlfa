@@ -256,7 +256,7 @@ public class Drawing {
     
     public static int drawOverDeadPlayer(){
         
-        //When a player dies, draw over their weapons with a black line to show that they are dead
+        //When a player dies, draw over their name and weapons with a black line
         
         return 0;
     }//Not finished

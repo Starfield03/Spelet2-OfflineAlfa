@@ -43,19 +43,20 @@ public class Phases {
         
         Drawing.drawWeaponMarkOutline(gameboard, sideLength);
         
-        gamePhase(gameboard, sideLength);
+        gamePhase(gameboard, sideLength, weapons);
     }//Not finished
     
     
     
-    public static void gamePhase(SimpleWindow gameboard, int sideLength){
+    public static void gamePhase(SimpleWindow gameboard, int sideLength, int weapons[][]){
         
-        int coordinates[] = InformationGathering.getCoordinates(gameboard, sideLength, 1); //Not done
+        int coordinates[] = InformationGathering.getCoordinates(gameboard, sideLength, 1, weapons); //Need player counter
         
         System.out.println(coordinates[0] + " " + coordinates[1] + " " + coordinates[2]);
         
-        gamePhase(gameboard, sideLength);
+        gamePhase(gameboard, sideLength, weapons);
         
+        //Needs turn and player counter
     }//Not finished
     
     
