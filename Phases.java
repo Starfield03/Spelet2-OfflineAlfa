@@ -81,6 +81,9 @@ public class Phases {
             
             turnCounter++;
             
+            Drawing.drawOverDeadPlayer(gameboard, (turnCounter + numberOfPlayers - 1) % numberOfPlayers, sideLength);
+            //Draw over the players name and weapons to show that they are dead
+            
             gamePhase(gameboard, sideLength, numberOfPlayers, turnCounter, roundCounter, weapons, positions, players, activePositions);
         }
         
@@ -124,9 +127,18 @@ public class Phases {
             else{
                 //If the player can move, either with or without the help of a weapon
                 
-                Drawing.drawWeaponCounter(gameboard, sideLength, numberOfPlayers, weapons); //Temporary
-                Drawing.drawRoundNumber(gameboard, sideLength, player); //Temporary
-                Drawing.drawTurnSquareAndNumber(gameboard, sideLength, player); //Temporary
+                Drawing.drawWeaponCounter(gameboard, sideLength, numberOfPlayers, weapons);
+                Drawing.drawRoundNumber(gameboard, sideLength, player);
+                Drawing.drawTurnSquareAndNumber(gameboard, sideLength, player);
+                
+                for(int i = 0 ; i < numberOfPlayers ; i++){
+                    
+                    if(players[i] == 0){
+                        
+                        Drawing.drawOverDeadPlayer(gameboard, i + 1, sideLength);
+                        //Draw over the dead players name and weapons to show that they are dead
+                    }
+                }
                 
                 int coordinates[] = InformationGathering.getCoordinates(gameboard, sideLength, player, weapons); //Need player counter
                 
@@ -136,12 +148,10 @@ public class Phases {
                 int activePositionX = activePositions[player * 2 - 2];
                 int activePositionY = activePositions[player * 2 - 1];
                 
-                boolean legalityOfMove = Positions.legalityOfMove(positions, sideLength, activePositionX, activePositionY, nextPositionX, nextPositionY, weapon);
+                boolean legalityOfMove = Positions.legalityOfMove(positions, sideLength, numberOfPlayers, players, activePositions, activePositionX, activePositionY, nextPositionX, nextPositionY, weapon);
                 
                 if(legalityOfMove == true){
                     //If the players move is legal, it gets executed
-                    
-                    
                     
                     Drawing.drawNewSquares(gameboard, player, nextPositionX, nextPositionY);
                     Drawing.drawOldSquares(gameboard, player, activePositionX, activePositionY);
@@ -152,7 +162,7 @@ public class Phases {
                     positions = Positions.nextPosition(positions, sideLength, nextPositionX, nextPositionY);
                     
                     if((turnCounter + numberOfPlayers - 1) % numberOfPlayers + 1 == numberOfPlayers){ 
-                        //If it is the last players turn
+                        //If it is the last players turn the round counter goes up
                     
                         roundCounter++;
                     }
@@ -180,6 +190,10 @@ public class Phases {
                         //If the player uses the laser weapon
                         
                         //Write more code, not finished
+                        
+                        Drawing.eraseSquaresLaser(gameboard, sideLength, numberOfPlayers, activePositionX, activePositionY, nextPositionX, nextPositionY, activePositions);
+                        
+                        positions = Positions.erasePositionLaser(positions, sideLength, numberOfPlayers, activePositionX, activePositionY, nextPositionX, nextPositionY, activePositions);
                         
                         weapons[player - 1][1]--;
                         //Decreases the amount of this weapon in the players arsenal by one

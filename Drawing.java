@@ -101,10 +101,53 @@ public class Drawing {
         return 0;
     }//Not finished
     
-    public static int eraseSquaresLaser(){
+    public static int eraseSquaresLaser(SimpleWindow gameboard, int sideLength, int numberOfPlayers, int activePositionX, int activePositionY, int nextPositionX, int nextPositionY, int activePositions[]){
+        
+        int slopeX = nextPositionX - activePositionX;
+        int slopeY = nextPositionY - activePositionY;
+        //The direction the laser is travelling 
+        
+        int positionX = nextPositionX + slopeX;
+        int positionY = nextPositionY + slopeY;
+        //The position of the tip of the laserbeam
+        
+        gameboard.setLineColor(Color.white);
+        
+        int counter = 0;
+        
+        while(true){
+            
+            for(int i = 0 ; i < numberOfPlayers ; i++){
+                
+                if(positionX == activePositions[(i + 1) * 2 - 2] && positionY == activePositions[(i + 1) * 2 - 1]){
+                    //If the laser crosses paths with a player the counter will go up
+                    
+                    counter++;
+                }
+            }
+            
+            if(positionX == -1 || positionX == sideLength || positionY == -1 || positionY == sideLength || counter > 0){
+                //If the laser reaches the edge of the gameboard, or a player, it will stop destroying stuff
+                
+                break;
+            }
+            
+            else{
+                //The laser gets fired and removes the squares in its way
+                
+                gameboard.square(positionX * 50 + 1, positionY * 50 + 1, 49);
+                
+                positionX = positionX + slopeX;
+                positionY = positionY + slopeY;
+                //The position of the tip of the laserbeam
+                
+                gameboard.delay(100);
+                //Sets the delay between every block removal
+            }
+        }
         
         return 0;
-    }//Not finished
+    }
     
     
     
@@ -327,10 +370,12 @@ public class Drawing {
     
     
     
-    public static int drawOverDeadPlayer(){
+    public static int drawOverDeadPlayer(SimpleWindow gameboard, int player, int sideLength){
         
-        //When a player dies, draw over their name and weapons with a black line
+        gameboard.setLineColor(Color.black);
+        gameboard.moveTo(sideLength * 50 + 50, 150 + 10 + 20 * (player - 1));
+        gameboard.lineTo(sideLength * 50 + 300, 150 + 10 + 20 * (player - 1));
         
         return 0;
-    }//Not finished
+    }
 }

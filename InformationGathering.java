@@ -165,7 +165,7 @@ public class InformationGathering {
             nextCoordinates[1] = (int) Math.floor(gameboard.getMouseY() / 50);
             //Coordinates of next move
             
-            if(nextCoordinates[0] >= sideLength + 2 && nextCoordinates[0] <= sideLength + 5 && nextCoordinates[1] == 2 && weapons[player - 1][nextCoordinates[0] - 8] >= 1){
+            if(nextCoordinates[0] >= sideLength + 2 && nextCoordinates[0] <= sideLength + 5 && nextCoordinates[1] == 2 && weapons[player - 1][nextCoordinates[0] - sideLength - 2] >= 1){
                 //If player presses a weapon which they posses
                 
                 if(nextCoordinates[2] == nextCoordinates[0] - sideLength - 1){
