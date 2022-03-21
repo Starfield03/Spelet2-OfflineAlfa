@@ -198,6 +198,8 @@ public class Phases {
                     
                     //Write more code, not finished
                     
+                    Drawing.drawBomb(gameboard, activePositionX, activePositionY);
+                    
                     weapons[player - 1][0]--;
                     //Decreases the amount of this weapon in the players arsenal by one
                         

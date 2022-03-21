@@ -53,14 +53,14 @@ public class Positions {
     
     
     
-    public static int[][] plantBomb(int bombs[][], int activePositionX, int activePositionY){
+    public static int[][] plantBomb(SimpleWindow gameboard, int bombs[][], int activePositionX, int activePositionY){
         
         bombs[activePositionX][activePositionY] = 2;
         
         return bombs;
     }//Not finished
     
-    public static int[][] bombTimer(int bombs[][], int sideLength){
+    public static int[][] bombTimer(SimpleWindow gameboard, boolean positions[][], int bombs[][], int sideLength){
         
         for(int i = 0 ; i < sideLength ; i ++){
             
@@ -70,7 +70,7 @@ public class Positions {
                     
                     if(bombs[i][j] == 1){
                         
-                        //Aktivera kod för sprängning
+                        erasePositionBomb(gameboard, positions, sideLength, i, j);
                     }
                     
                     bombs[i][j]--;
@@ -79,14 +79,30 @@ public class Positions {
         }
         
         return bombs;
-    }
+    }//Not finished, koppla ihop denna med drawBombCounter
     
-    public static boolean[][] erasePositionBomb(){
+    public static boolean[][] erasePositionBomb(SimpleWindow gameboard, boolean positions[][], int sideLength, int bombX, int bombY){
         
-        boolean positions[][] = new boolean[4][4];
+        for(int i = -1 ; i < 2; i++){
+            
+            for(int j = -1 ; j < 2 ; j++){
+                
+                if(bombX + 1 + j == 0 || bombX + 1 + j == sideLength + 1 || bombY + 1 + i == 0 || bombY + 1 + i == sideLength + 1){
+                    //If the bomb is along a wall it wont destroy the wall
+                }
+                
+                else{
+                    //The bomb destroys squares
+                    
+                    Drawing.eraseSquaresBomb(gameboard, sideLength, bombX, bombY);
+                    
+                    positions[bombX + 1 + j][bombY + 1 + i] = false;
+                }
+            }
+        }
         
         return positions;
-    }//Not finished
+    }//Not finished, ska inte ta bort aktiva positioner av spelare
     
     
     

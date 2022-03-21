@@ -96,17 +96,40 @@ public class Drawing {
     
     
     
-    public static int drawBomb(){//Not finished
+    public static int drawBomb(SimpleWindow gameboard, int bombX, int bombY){
+        
+        gameboard.setLineColor(Color.black);
+        
+        gameboard.square(bombX * 50 + 1, bombY * 50 + 1, 49);
         
         return 0;
-    }
+    }//Not finished
     
-    public static int drawBombCounter(){//Not finished
+    public static int drawBombCounter(){
         
         return 0;
-    }
+    }//Not finished, koda denna, kanske ska den bero på turn istället för runda, kan använda mod för att få bomben att skriva ut runda
     
-    public static int eraseSquaresBomb(){
+    public static int eraseSquaresBomb(SimpleWindow gameboard, int sideLength, int bombX, int bombY){
+        
+        gameboard.setLineColor(Color.white);
+        
+        for(int i = -1 ; i < 2; i++){
+            
+            for(int j = -1 ; j < 2 ; j++){
+                
+                if(bombX + j < 0 || bombX + j > sideLength - 1 || bombY + i < 0 || bombY + i > sideLength - 1){
+                    //Nothing gets removed
+                }
+                
+                else{
+                    
+                    gameboard.square((bombX + j) * 50 + 1, (bombY + i) * 50 + 1, 49);
+                    
+                    gameboard.delay(100);
+                }
+            }
+        }
         
         return 0;
     }//Not finished
