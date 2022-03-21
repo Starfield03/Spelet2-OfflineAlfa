@@ -53,12 +53,42 @@ public class Positions {
     
     
     
+    public static int[][] plantBomb(int bombs[][], int activePositionX, int activePositionY){
+        
+        bombs[activePositionX][activePositionY] = 2;
+        
+        return bombs;
+    }//Not finished
+    
+    public static int[][] bombTimer(int bombs[][], int sideLength){
+        
+        for(int i = 0 ; i < sideLength ; i ++){
+            
+            for(int j = 0 ; j < sideLength ; j++){
+                
+                if(bombs[i][j] > 0){
+                    
+                    if(bombs[i][j] == 1){
+                        
+                        //Aktivera kod för sprängning
+                    }
+                    
+                    bombs[i][j]--;
+                }
+            }
+        }
+        
+        return bombs;
+    }
+    
     public static boolean[][] erasePositionBomb(){
         
         boolean positions[][] = new boolean[4][4];
         
         return positions;
     }//Not finished
+    
+    
     
     public static boolean[][] erasePositionLaser(boolean positions[][], int sideLength, int numberOfPlayers, int activePositionX, int activePositionY, int nextPositionX, int nextPositionY, int activePositions[]){
         

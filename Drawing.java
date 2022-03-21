@@ -96,10 +96,22 @@ public class Drawing {
     
     
     
+    public static int drawBomb(){//Not finished
+        
+        return 0;
+    }
+    
+    public static int drawBombCounter(){//Not finished
+        
+        return 0;
+    }
+    
     public static int eraseSquaresBomb(){
         
         return 0;
     }//Not finished
+    
+    
     
     public static int eraseSquaresLaser(SimpleWindow gameboard, int sideLength, int numberOfPlayers, int activePositionX, int activePositionY, int nextPositionX, int nextPositionY, int activePositions[]){
         
