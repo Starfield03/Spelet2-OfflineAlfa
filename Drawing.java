@@ -100,17 +100,24 @@ public class Drawing {
         
         gameboard.setLineColor(Color.black);
         
-        gameboard.square(bombX * 50 + 1, bombY * 50 + 1, 49);
+        gameboard.square(bombX * 50 + 4, bombY * 50 + 4, 43);
         
         return 0;
     }//Not finished
     
-    public static int drawBombCounter(){
+    public static int drawBombCounter(SimpleWindow gameboard, int number, int bombX, int bombY){
+        
+        gameboard.setLineColor(Color.black);
+        gameboard.square(bombX * 50 + 4, bombY * 50 + 4, 43);
+        
+        gameboard.setLineColor(Color.white);
+        gameboard.moveTo(bombX * 50 + 21, bombY * 50 + 18);
+        gameboard.writeText((number - 1) + " ");
         
         return 0;
     }//Not finished, koda denna, kanske ska den bero på turn istället för runda, kan använda mod för att få bomben att skriva ut runda
     
-    public static int eraseSquaresBomb(SimpleWindow gameboard, int sideLength, int bombX, int bombY){
+    public static int eraseSquaresBomb(SimpleWindow gameboard, int numberOfPlayers, int sideLength, int bombX, int bombY, int activePositions[]){
         
         gameboard.setLineColor(Color.white);
         
@@ -124,9 +131,27 @@ public class Drawing {
                 
                 else{
                     
-                    gameboard.square((bombX + j) * 50 + 1, (bombY + i) * 50 + 1, 49);
+                    int counter = 0;
                     
-                    gameboard.delay(100);
+                    for(int k = 0 ; k < numberOfPlayers ; k++){
+                        
+                        int activePositionX = activePositions[(k + 1) * 2 - 2];
+                        int activePositionY = activePositions[(k + 1) * 2 - 1];
+                        
+                        if(bombX + j == activePositionX && bombY + i == activePositionY){
+                            
+                            counter++;
+                        }
+                    }
+                    
+                    if(counter > 0){
+                        
+                    }
+                    
+                    else{
+                        
+                        gameboard.square((bombX + j) * 50 + 1, (bombY + i) * 50 + 1, 49);
+                    }
                 }
             }
         }

@@ -179,7 +179,7 @@ public class Phases {
                 activePositions[player * 2 - 1] = nextPositionY;
             
                 positions = Positions.nextPosition(positions, sideLength, nextPositionX, nextPositionY);
-               
+                
                 if((turnCounter + numberOfPlayers - 1) % numberOfPlayers + 1 == numberOfPlayers){ 
                     //If it is the last players turn the round counter goes up
                     
@@ -199,6 +199,8 @@ public class Phases {
                     //Write more code, not finished
                     
                     Drawing.drawBomb(gameboard, activePositionX, activePositionY);
+                    
+                    bombs = Positions.plantBomb(gameboard, numberOfPlayers, bombs, activePositionX, activePositionY);
                     
                     weapons[player - 1][0]--;
                     //Decreases the amount of this weapon in the players arsenal by one
@@ -237,6 +239,8 @@ public class Phases {
                     turnCounter++;
                     //Turn goes to the next player
                 }
+                
+                bombs = Positions.bombTimer(gameboard, positions, numberOfPlayers, bombs, sideLength, activePositions);
                     
                 gamePhase(gameboard, sideLength, numberOfPlayers, deadOrAlive, turnCounter, roundCounter, weapons, positions, players, activePositions, bombs);
             }

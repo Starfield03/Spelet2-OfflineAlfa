@@ -53,14 +53,14 @@ public class Positions {
     
     
     
-    public static int[][] plantBomb(SimpleWindow gameboard, int bombs[][], int activePositionX, int activePositionY){
+    public static int[][] plantBomb(SimpleWindow gameboard, int numberOfPlayers, int bombs[][], int activePositionX, int activePositionY){
         
-        bombs[activePositionX][activePositionY] = 2;
+        bombs[activePositionX][activePositionY] = 2 * numberOfPlayers;
         
         return bombs;
     }//Not finished
     
-    public static int[][] bombTimer(SimpleWindow gameboard, boolean positions[][], int bombs[][], int sideLength){
+    public static int[][] bombTimer(SimpleWindow gameboard, boolean positions[][], int numberOfPlayers, int bombs[][], int sideLength, int activePositions[]){
         
         for(int i = 0 ; i < sideLength ; i ++){
             
@@ -68,9 +68,11 @@ public class Positions {
                 
                 if(bombs[i][j] > 0){
                     
+                Drawing.drawBombCounter(gameboard, bombs[i][j], i, j);
+                    
                     if(bombs[i][j] == 1){
                         
-                        erasePositionBomb(gameboard, positions, sideLength, i, j);
+                        erasePositionBomb(gameboard, positions, numberOfPlayers, sideLength, i, j, activePositions);
                     }
                     
                     bombs[i][j]--;
@@ -81,7 +83,7 @@ public class Positions {
         return bombs;
     }//Not finished, koppla ihop denna med drawBombCounter
     
-    public static boolean[][] erasePositionBomb(SimpleWindow gameboard, boolean positions[][], int sideLength, int bombX, int bombY){
+    public static boolean[][] erasePositionBomb(SimpleWindow gameboard, boolean positions[][], int numberOfPlayers, int sideLength, int bombX, int bombY, int activePositions[]){
         
         for(int i = -1 ; i < 2; i++){
             
@@ -94,9 +96,29 @@ public class Positions {
                 else{
                     //The bomb destroys squares
                     
-                    Drawing.eraseSquaresBomb(gameboard, sideLength, bombX, bombY);
+                    int counter = 0;
                     
-                    positions[bombX + 1 + j][bombY + 1 + i] = false;
+                    for(int k = 0 ; k < numberOfPlayers ; k++){
+                        
+                        int activePositionX = activePositions[(k + 1) * 2 - 2];
+                        int activePositionY = activePositions[(k + 1) * 2 - 1];
+                        
+                        if(bombX + j == activePositionX && bombY + i == activePositionY){
+                            
+                            counter++;
+                        }
+                    }
+                    
+                    if(counter > 0){
+                        
+                    }
+                    
+                    else{
+                        
+                        Drawing.eraseSquaresBomb(gameboard, numberOfPlayers, sideLength, bombX, bombY, activePositions);
+                    
+                        positions[bombX + 1 + j][bombY + 1 + i] = false;
+                    }
                 }
             }
         }
