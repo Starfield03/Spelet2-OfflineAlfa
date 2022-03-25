@@ -58,7 +58,7 @@ public class Positions {
         bombs[activePositionX][activePositionY] = 2 * numberOfPlayers;
         
         return bombs;
-    }//Not finished
+    }
     
     public static int[][] bombTimer(SimpleWindow gameboard, boolean positions[][], int numberOfPlayers, int bombs[][], int sideLength, int activePositions[]){
         
@@ -68,11 +68,11 @@ public class Positions {
                 
                 if(bombs[i][j] > 0){
                     
-                Drawing.drawBombCounter(gameboard, bombs[i][j], i, j);
+                Drawing.drawBombCounter(gameboard, numberOfPlayers, bombs[i][j], i, j);
                     
                     if(bombs[i][j] == 1){
                         
-                        erasePositionBomb(gameboard, positions, numberOfPlayers, sideLength, i, j, activePositions);
+                        erasePositionBomb(gameboard, positions, bombs, numberOfPlayers, sideLength, i, j, activePositions);
                     }
                     
                     bombs[i][j]--;
@@ -81,9 +81,9 @@ public class Positions {
         }
         
         return bombs;
-    }//Not finished, koppla ihop denna med drawBombCounter
+    }
     
-    public static boolean[][] erasePositionBomb(SimpleWindow gameboard, boolean positions[][], int numberOfPlayers, int sideLength, int bombX, int bombY, int activePositions[]){
+    public static boolean[][] erasePositionBomb(SimpleWindow gameboard, boolean positions[][], int bombs[][], int numberOfPlayers, int sideLength, int bombX, int bombY, int activePositions[]){
         
         for(int i = -1 ; i < 2; i++){
             
@@ -110,12 +110,16 @@ public class Positions {
                     }
                     
                     if(counter > 0){
-                        
+                        //The bomb cannot remove players
+                    }
+                    
+                    else if(bombs[bombX + j][bombY + i] > 1){
+                        //The bomb cannot remove other bombs
                     }
                     
                     else{
                         
-                        Drawing.eraseSquaresBomb(gameboard, numberOfPlayers, sideLength, bombX, bombY, activePositions);
+                        Drawing.eraseSquaresBomb(gameboard, numberOfPlayers, sideLength, bombX, bombY, activePositions, j, i);
                     
                         positions[bombX + 1 + j][bombY + 1 + i] = false;
                     }
@@ -124,7 +128,7 @@ public class Positions {
         }
         
         return positions;
-    }//Not finished, ska inte ta bort aktiva positioner av spelare
+    } //Something wrong with "The bomb cannot remove other bombs" part
     
     
     
@@ -170,7 +174,7 @@ public class Positions {
         }
         
         return positions;
-    }//Not finished
+    }
     
     
     
@@ -219,10 +223,16 @@ public class Positions {
     
     
     
-    public static boolean legalityOfMove(boolean positions[][], int sideLength, int numberOfPlayers, int players[], int activePositions[], int activePositionX, int activePositionY, int nextPositionX, int nextPositionY, int weapon){
+    public static boolean legalityOfMove(boolean positions[][], int sideLength, int numberOfPlayers, int players[], int activePositions[], int activePositionX, int activePositionY, int nextPositionX, int nextPositionY, int weapon, int bombs[][]){
         
         if(nextPositionX == activePositionX && nextPositionY == activePositionY){
             //The player cannot move to the same square they are standing on
+            
+            return false;
+        }
+        
+        else if(bombs[nextPositionX][nextPositionY] > 0){
+            //The player cannot move over a active bomb with any kind of ability
             
             return false;
         }

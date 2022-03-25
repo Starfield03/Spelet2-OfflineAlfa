@@ -140,6 +140,8 @@ public class Phases {
             
             turnCounter++;
             
+            bombs = Positions.bombTimer(gameboard, positions, numberOfPlayers, bombs, sideLength, activePositions);
+            
             gamePhase(gameboard, sideLength, numberOfPlayers, deadOrAlive, turnCounter, roundCounter, weapons, positions, players, activePositions, bombs);
         }
         
@@ -147,12 +149,12 @@ public class Phases {
             //If several players are alive
             
             Drawing.drawWeaponCounter(gameboard, sideLength, numberOfPlayers, weapons);
-            Drawing.drawRoundNumber(gameboard, sideLength, player);
+            Drawing.drawRoundNumber(gameboard, sideLength, roundCounter);
             Drawing.drawTurnSquareAndNumber(gameboard, sideLength, player);
             
             for(int i = 0 ; i < numberOfPlayers ; i++){
                 
-                if(players[i] == 0){
+                if(deadOrAlive[i] == false){
                     
                     Drawing.drawOverDeadPlayer(gameboard, i + 1, sideLength);
                     //Draw over the dead players name and weapons to show that they are dead
@@ -167,7 +169,7 @@ public class Phases {
             int activePositionX = activePositions[player * 2 - 2];
             int activePositionY = activePositions[player * 2 - 1];
             
-            boolean legalityOfMove = Positions.legalityOfMove(positions, sideLength, numberOfPlayers, players, activePositions, activePositionX, activePositionY, nextPositionX, nextPositionY, weapon);
+            boolean legalityOfMove = Positions.legalityOfMove(positions, sideLength, numberOfPlayers, players, activePositions, activePositionX, activePositionY, nextPositionX, nextPositionY, weapon, bombs);
             
             if(legalityOfMove == true){
                 //If the players move is legal, it gets executed

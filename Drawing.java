@@ -103,61 +103,29 @@ public class Drawing {
         gameboard.square(bombX * 50 + 4, bombY * 50 + 4, 43);
         
         return 0;
-    }//Not finished
+    }
     
-    public static int drawBombCounter(SimpleWindow gameboard, int number, int bombX, int bombY){
+    public static int drawBombCounter(SimpleWindow gameboard, int numberOfPlayers, int number, int bombX, int bombY){
         
         gameboard.setLineColor(Color.black);
         gameboard.square(bombX * 50 + 4, bombY * 50 + 4, 43);
         
         gameboard.setLineColor(Color.white);
         gameboard.moveTo(bombX * 50 + 21, bombY * 50 + 18);
-        gameboard.writeText((number - 1) + " ");
+        gameboard.writeText(((number + numberOfPlayers - 2) / numberOfPlayers) + " ");
         
         return 0;
-    }//Not finished, koda denna, kanske ska den bero på turn istället för runda, kan använda mod för att få bomben att skriva ut runda
+    }
     
-    public static int eraseSquaresBomb(SimpleWindow gameboard, int numberOfPlayers, int sideLength, int bombX, int bombY, int activePositions[]){
+    public static int eraseSquaresBomb(SimpleWindow gameboard, int numberOfPlayers, int sideLength, int bombX, int bombY, int activePositions[], int j, int i){
         
         gameboard.setLineColor(Color.white);
+        gameboard.square((bombX + j) * 50 + 1, (bombY + i) * 50 + 1, 49);
         
-        for(int i = -1 ; i < 2; i++){
-            
-            for(int j = -1 ; j < 2 ; j++){
-                
-                if(bombX + j < 0 || bombX + j > sideLength - 1 || bombY + i < 0 || bombY + i > sideLength - 1){
-                    //Nothing gets removed
-                }
-                
-                else{
-                    
-                    int counter = 0;
-                    
-                    for(int k = 0 ; k < numberOfPlayers ; k++){
-                        
-                        int activePositionX = activePositions[(k + 1) * 2 - 2];
-                        int activePositionY = activePositions[(k + 1) * 2 - 1];
-                        
-                        if(bombX + j == activePositionX && bombY + i == activePositionY){
-                            
-                            counter++;
-                        }
-                    }
-                    
-                    if(counter > 0){
-                        
-                    }
-                    
-                    else{
-                        
-                        gameboard.square((bombX + j) * 50 + 1, (bombY + i) * 50 + 1, 49);
-                    }
-                }
-            }
-        }
+        gameboard.delay(100);
         
         return 0;
-    }//Not finished
+    }
     
     
     
