@@ -214,9 +214,9 @@ public class Phases {
                 else if(weapon == 2){
                     //If the player uses the laser weapon
                         
-                    Drawing.eraseSquaresLaser(gameboard, sideLength, numberOfPlayers, activePositionX, activePositionY, nextPositionX, nextPositionY, activePositions);
+                    Drawing.eraseSquaresLaser(gameboard, sideLength, numberOfPlayers, activePositionX, activePositionY, nextPositionX, nextPositionY, activePositions, bombs);
                         
-                    positions = Positions.erasePositionLaser(positions, sideLength, numberOfPlayers, activePositionX, activePositionY, nextPositionX, nextPositionY, activePositions);
+                    positions = Positions.erasePositionLaser(positions, sideLength, numberOfPlayers, activePositionX, activePositionY, nextPositionX, nextPositionY, activePositions, bombs);
                         
                     weapons[player - 1][1]--;
                     //Decreases the amount of this weapon in the players arsenal by one
@@ -253,7 +253,7 @@ public class Phases {
                 gamePhase(gameboard, sideLength, numberOfPlayers, deadOrAlive, turnCounter, roundCounter, weapons, positions, players, activePositions, bombs);
             }
         }
-    }//Not finished
+    }
     
     
     
