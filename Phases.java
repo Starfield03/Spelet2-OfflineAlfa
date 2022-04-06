@@ -94,6 +94,15 @@ public class Phases {
         if(counter >= numberOfPlayers - 1){ 
             //If only one or no player lives
             
+            for(int i = 0 ; i < numberOfPlayers ; i++){
+                
+                if(deadOrAlive[i] == false){
+                    
+                    Drawing.drawOverDeadPlayer(gameboard, i + 1, sideLength);
+                    //Draw over the dead players name and weapons to show that they are dead
+                }
+            }
+            
             if(player == numberOfPlayers){
                 //If its the last players turn aka if the last round is completed
                 
