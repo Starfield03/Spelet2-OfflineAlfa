@@ -113,7 +113,7 @@ public class Positions {
                         //The bomb cannot remove players
                     }
                     
-                    else if(bombs[bombX + j][bombY + i] > 1){
+                    else if(bombs[bombX + j][bombY + i] > 0 && j * j + i * i != 0){
                         //The bomb cannot remove other bombs
                     }
                     
@@ -128,11 +128,11 @@ public class Positions {
         }
         
         return positions;
-    } //Something wrong with "The bomb cannot remove other bombs" part
+    }
     
     
     
-    public static boolean[][] erasePositionLaser(boolean positions[][], int sideLength, int numberOfPlayers, int activePositionX, int activePositionY, int nextPositionX, int nextPositionY, int activePositions[]){
+    public static boolean[][] erasePositionLaser(boolean positions[][], int sideLength, int numberOfPlayers, int activePositionX, int activePositionY, int nextPositionX, int nextPositionY, int activePositions[], int bombs[][]){
         
         
         int slopeX = nextPositionX - activePositionX;
@@ -158,6 +158,12 @@ public class Positions {
             
             if(positionX + 1 == 0 || positionX + 1 == sideLength + 1 || positionY + 1 == 0 || positionY + 1 == sideLength + 1 || counter > 0){
                 //If the laser reaches the edge of the gameboard, or a player, it will stop destroying stuff
+                
+                break;
+            }
+            
+            else if(bombs[positionX][positionY] > 0){
+                //If the laser reaches a bomb, it will stop destroying stuff
                 
                 break;
             }
