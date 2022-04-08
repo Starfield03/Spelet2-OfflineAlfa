@@ -15,7 +15,15 @@ public class InformationGathering {
             
             System.out.println("Number of players, between 2 and 4:");
             
-            numberOfPlayers = sc.nextInt();
+            try{
+                
+                numberOfPlayers = sc.nextInt();
+            }
+            
+            catch(Exception e){
+            
+                sc.next();
+            }
             
             System.out.println(" ");
         }
@@ -35,7 +43,15 @@ public class InformationGathering {
             
             System.out.println("Side length of gameboard, even numbers between 6 and 12:");
             
-            sideLength = sc.nextInt();
+            try{
+                
+                sideLength = sc.nextInt();
+            }
+            
+            catch(Exception e){
+                
+                sc.next();
+            }
             
             System.out.println(" ");
         }
@@ -55,7 +71,15 @@ public class InformationGathering {
             
             System.out.println("Number of weapons per player, between 1 and 4:");
             
-            numberOfWeapons = sc.nextInt();
+            try{
+                
+                numberOfWeapons = sc.nextInt();
+            }
+            
+            catch(Exception e){
+                
+                sc.next();
+            }
             
             System.out.println(" ");
         }
@@ -126,7 +150,7 @@ public class InformationGathering {
         
         
         return weapons;
-    }
+    } //Add try-catch
     
     public static int visualRepresentationOfWeapons(int numberOfPlayers, int numberOfWeapons, int weapons[][]){
         
