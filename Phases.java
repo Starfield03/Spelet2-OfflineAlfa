@@ -94,15 +94,6 @@ public class Phases {
         if(counter >= numberOfPlayers - 1){ 
             //If only one or no player lives
             
-            for(int i = 0 ; i < numberOfPlayers ; i++){
-                
-                if(deadOrAlive[i] == false){
-                    
-                    Drawing.drawOverDeadPlayer(gameboard, i + 1, sideLength);
-                    //Draw over the dead players name and weapons to show that they are dead
-                }
-            }
-            
             if(player == numberOfPlayers){
                 //If its the last players turn aka if the last round is completed
                 
@@ -223,9 +214,9 @@ public class Phases {
                 else if(weapon == 2){
                     //If the player uses the laser weapon
                         
-                    Drawing.eraseSquaresLaser(gameboard, sideLength, numberOfPlayers, activePositionX, activePositionY, nextPositionX, nextPositionY, activePositions, bombs);
+                    Drawing.eraseSquaresLaser(gameboard, sideLength, numberOfPlayers, activePositionX, activePositionY, nextPositionX, nextPositionY, activePositions);
                         
-                    positions = Positions.erasePositionLaser(positions, sideLength, numberOfPlayers, activePositionX, activePositionY, nextPositionX, nextPositionY, activePositions, bombs);
+                    positions = Positions.erasePositionLaser(positions, sideLength, numberOfPlayers, activePositionX, activePositionY, nextPositionX, nextPositionY, activePositions);
                         
                     weapons[player - 1][1]--;
                     //Decreases the amount of this weapon in the players arsenal by one
@@ -262,7 +253,7 @@ public class Phases {
                 gamePhase(gameboard, sideLength, numberOfPlayers, deadOrAlive, turnCounter, roundCounter, weapons, positions, players, activePositions, bombs);
             }
         }
-    }
+    }//Not finished
     
     
     

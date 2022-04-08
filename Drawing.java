@@ -129,7 +129,7 @@ public class Drawing {
     
     
     
-    public static int eraseSquaresLaser(SimpleWindow gameboard, int sideLength, int numberOfPlayers, int activePositionX, int activePositionY, int nextPositionX, int nextPositionY, int activePositions[], int bombs[][]){
+    public static int eraseSquaresLaser(SimpleWindow gameboard, int sideLength, int numberOfPlayers, int activePositionX, int activePositionY, int nextPositionX, int nextPositionY, int activePositions[]){
         
         int slopeX = nextPositionX - activePositionX;
         int slopeY = nextPositionY - activePositionY;
@@ -156,12 +156,6 @@ public class Drawing {
             
             if(positionX == -1 || positionX == sideLength || positionY == -1 || positionY == sideLength || counter > 0){
                 //If the laser reaches the edge of the gameboard, or a player, it will stop destroying stuff
-                
-                break;
-            }
-            
-            else if(bombs[positionX][positionY] > 0){
-                //If the laser reches a bomb, it will stop destroying stuff
                 
                 break;
             }
@@ -197,7 +191,7 @@ public class Drawing {
     public static int drawRoundNumber(SimpleWindow gameboard, int sideLength, int roundCounter){
         
         gameboard.setLineColor(Color.white);
-        gameboard.square(sideLength * 50 + 100, 40, 20);
+        gameboard.square(sideLength * 50 + 100, 40, 10);
         
         gameboard.setLineColor(Color.black);
         gameboard.moveTo(sideLength * 50 + 100, 50);
