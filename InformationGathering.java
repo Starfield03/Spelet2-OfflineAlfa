@@ -100,57 +100,68 @@ public class InformationGathering {
         for(int i = 0 ; i < numberOfPlayers ; i++){
             //Which player
             
-            if(numberOfWeapons == 1){
-                
-                System.out.println("Player " + (i + 1) + ", choose 1 weapon by entering a number (bomb = 1, laser = 2, dash = 3, phase = 4):");
-            }
-            
-            else{
-                
-                System.out.println("Player " + (i + 1) + ", choose " + numberOfWeapons + " weapons by entering numbers seperated by spaces (bomb = 1, laser = 2, dash = 3, phase = 4):");
-            }
-            
-            for(int j = 0 ; j < numberOfWeapons ; j++){
-                
-                chooseWeapons[i][j] = 0;
-                
-                while(chooseWeapons[i][j] < 1 || chooseWeapons[i][j] > 4){
-                    //Weapons must be a bomb, laser, dash or phase
+            try{
+                if(numberOfWeapons == 1){
                     
-                    chooseWeapons[i][j] = sc.nextInt();
+                    System.out.println("Player " + (i + 1) + ", choose 1 weapon by entering a number (bomb = 1, laser = 2, dash = 3, phase = 4):");
                 }
-            }
             
-            System.out.println(" ");
-            
-            for(int k = 0 ; k < numberOfWeapons ; k++){
-                
-                if(chooseWeapons[i][k] == 1){
-                    
-                    weapons[i][0]++;
-                }
-                
-                else if(chooseWeapons[i][k] == 2){
-                    
-                    weapons[i][1]++;
-                }
-                
-                else if(chooseWeapons[i][k] == 3){
-                    
-                    weapons[i][2]++;
-                }
-                
                 else{
-                    
-                    weapons[i][3]++;
+                
+                    System.out.println("Player " + (i + 1) + ", choose " + numberOfWeapons + " weapons by entering numbers seperated by spaces (bomb = 1, laser = 2, dash = 3, phase = 4):");
                 }
+            
+                for(int j = 0 ; j < numberOfWeapons ; j++){
+                
+                    chooseWeapons[i][j] = 0;
+                
+                    while(chooseWeapons[i][j] < 1 || chooseWeapons[i][j] > 4){
+                        //Weapons must be a bomb, laser, dash or phase
+                    
+                        chooseWeapons[i][j] = sc.nextInt();
+                    }
+                }
+            
+                System.out.println(" ");
+            
+                for(int k = 0 ; k < numberOfWeapons ; k++){
+                
+                    if(chooseWeapons[i][k] == 1){
+                    
+                        weapons[i][0]++;
+                    }
+                
+                    else if(chooseWeapons[i][k] == 2){
+                    
+                        weapons[i][1]++;
+                    }
+                
+                    else if(chooseWeapons[i][k] == 3){
+                    
+                        weapons[i][2]++;
+                    }
+                
+                    else{
+                    
+                        weapons[i][3]++;
+                    }
+                }
+            }
+            
+            catch(Exception e){
+                
+                sc.nextLine();
+            
+                i--;
+                
+                System.out.println(" ");
             }
         }
         
         
         
         return weapons;
-    } //Add try-catch
+    }
     
     public static int visualRepresentationOfWeapons(int numberOfPlayers, int numberOfWeapons, int weapons[][]){
         
