@@ -282,24 +282,23 @@ public class Phases {
             
             String colour;
         
-            if(winningPlayer == 1){
-            
-                colour = "(Red)";
-            }
-        
-            else if(winningPlayer == 2){
-            
-                colour = "(Blue)";
-            }
-        
-            else if(winningPlayer == 3){
-            
-                colour = "(Green)";
-            }
-        
-            else{
-            
-                colour = "(Yellow)";
+            switch (winningPlayer) {
+                
+                case 1:
+                    colour = "(Red)";
+                    break;
+                    
+                case 2:
+                    colour = "(Blue)";
+                    break;
+                    
+                case 3:
+                    colour = "(Green)";
+                    break;
+                    
+                default:
+                    colour = "(Yellow)";
+                    break;
             }
             
             gameboard.moveTo(sideLength * 50 + 50, 250);
